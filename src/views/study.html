@@ -70,39 +70,47 @@
     </header>
 
     <main>
-      {%for proffy in proffys %}
-        <article class="teacher-item">
-          <header>
-            <img 
-            src="{{ proffy.avatar }}"
-            alt="{{ proffy.name }}">
 
-            <div>
+      
+      {% if proffys == "" %}
+      <p class="no-results">Nenhum professor encontrado na sua pesquisa.</p>
 
-              <strong>{{ proffy.name }}</strong>
-              <span>{{ proffy.subject}}</span>
+      {% else %}
 
-            </div>
-          </header>
+        {%for proffy in proffys %}
+          <article class="teacher-item">
+            <header>
+              <img 
+              src="{{ proffy.avatar }}"
+              alt="{{ proffy.name }}">
 
-          <p> {{ proffy.bio }}</p>
+              <div>
 
-          <footer>
+                <strong>{{ proffy.name }}</strong>
+                <span>{{ proffy.subject}}</span>
 
-            <p>Preço/hora <strong>R$ {{ proffy.cost}}</strong></p>
+              </div>
+            </header>
 
-            <a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{proffy.whatsapp}}&text=Tenho interesse na sua aula{{proffy.subject}} {{proffy.name}}" 
-            class="button" target="_blanc">
+            <p> {{ proffy.bio }}</p>
 
-              <img src="/images/icons/whatsapp.svg" alt="whatsapp">Entrar em Contato
-            </a>
+            <footer>
 
-          </footer>  
+              <p>Preço/hora <strong>R$ {{ proffy.cost}}</strong></p>
 
-        </article>
+              <a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{proffy.whatsapp}}&text=Tenho interesse na sua aula{{proffy.subject}} {{proffy.name}}" 
+              class="button" target="_blanc">
 
-      {%endfor%}
+                <img src="/images/icons/whatsapp.svg" alt="whatsapp">Entrar em Contato
+              </a>
 
+            </footer>  
+
+          </article>
+
+        {% endfor %}
+
+      {% endif %}    
      
     </main>
   </div>
